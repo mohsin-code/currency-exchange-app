@@ -1,16 +1,17 @@
 import { Country, ExchangeRate } from '@/types';
 import axios, { AxiosResponse } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import withAuth from '../middleware/auth';
 
 interface ResponseData {
   message: string;
   data?: Country[];
 }
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) {
+) => {
   if (req.method !== 'GET') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -52,3 +53,5 @@ export default async function handler(
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
+export default withAuth(handler)
