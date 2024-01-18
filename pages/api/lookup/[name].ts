@@ -1,4 +1,4 @@
-import { Country, ExchangeRate } from '@/pages/types';
+import { Country, ExchangeRate } from '@/types';
 import axios, { AxiosResponse } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
