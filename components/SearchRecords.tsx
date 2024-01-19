@@ -1,14 +1,26 @@
-import { Country } from '@/types';
+import { Country, Currency, Saved } from '@/types';
 import { Error } from './common/Error';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Button from './common/Button';
 
 interface Props {
   countries: Country[];
   error: string;
+  setSaved: Dispatch<SetStateAction<Saved[]>>;
 }
 
-const SearchRecords: React.FC<Props> = ({ countries, error }) => {
+const SearchRecords: React.FC<Props> = ({ countries, error, setSaved }) => {
+  const handleSaved = (country:Country, currency:Currency) => {
+    const newSaved: Saved = {
+      name: country.name as string,
+      currency: currency.name,
+      symbol: currency?.symbol || "",
+      exchangeRate: currency.exchangeRate || NaN
+    };
+
+    setSaved(prev => [ ...prev, newSaved ]);
+  }
+  
   return (
     <table className="w-full bg-white border border-gray-300">
       <thead>
@@ -53,14 +65,13 @@ const SearchRecords: React.FC<Props> = ({ countries, error }) => {
                   )}
                   <td className="py-2 px-4 border-l">{currency.name}</td>
                   <td className="py-2 px-4 grid place-items-center">
-                    <Button label='Save' handleClick={() => { }} />
+                    <Button label='Save' handleClick={() => handleSaved(country, currency)} />
                   </td>
                 </tr>
               ))}
             </React.Fragment>
           );
         })}
-
       </tbody>
     </table>
 
