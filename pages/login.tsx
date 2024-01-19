@@ -3,6 +3,7 @@ import Button from "@/components/common/Button"
 import AuthLayout from "@/layouts/AuthLayout"
 import { useRouter } from "next/router";
 import { Error } from "@/components/common/Error";
+import Head from "next/head";
 
 export default function Login() {
   const router = useRouter();
@@ -40,10 +41,13 @@ export default function Login() {
 
   return (
     <AuthLayout>
+      <Head>
+        <title>Login</title>
+      </Head>
       <p className="py-4 text-3xl font-semibold text-center">Login</p>
       <input className="p-1.5 w-60 border border-slate-500 rounded-md" type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
       <input className="p-1.5 w-60 border border-slate-500 rounded-md" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-      <Error error={error} successMessage="Successfully Logged In"/>
+      <Error error={error} successMessage="Successfully logged in"/>
       <Button label="Login" handleClick={handleLogin} />
     </AuthLayout>
   )

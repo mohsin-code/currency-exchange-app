@@ -8,6 +8,7 @@ import SavedLayout from "@/layouts/SavedLayout"
 import SearchLayout from "@/layouts/SearchLayout"
 import { Country, Saved } from "@/types"
 import SavedRecords from "@/components/SavedRecords"
+import Head from "next/head"
 
 const Page = () => {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -17,6 +18,9 @@ const Page = () => {
 
   return (
     <DefaultLayout>
+      <Head>
+        <title>Currency Exchange App</title>
+      </Head>
       <div className="flex min-h-full">
         <SearchLayout>
           <Search setCountries={setCountries} setError={setError} />

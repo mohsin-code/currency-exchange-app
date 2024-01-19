@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Currency Exchange App</title>
         <link rel="icon" href="/euro.svg" />
       </Head>
       <body>
