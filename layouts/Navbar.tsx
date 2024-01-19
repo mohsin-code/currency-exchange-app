@@ -1,6 +1,11 @@
+import { useRouter } from "next/router";
+
 export default function Navbar() {
+  const router = useRouter();
+
   const handleLogout = () => {
-    alert("Logged out!")
+    sessionStorage.clear();
+    router.push('/login');
   }
 
   return (
